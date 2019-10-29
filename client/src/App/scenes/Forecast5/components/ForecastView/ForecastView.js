@@ -4,13 +4,14 @@ import Item from './components/Item/Item';
 import './ForecastView.scss';
 
 const formatCityName = cityName => {
+	console.log("ForecastView.formatCityName.cityName",cityName);
 	const data = cityName.split(',');
 	const city = data[0].substring(0, 1).toUpperCase() + data[0].substring(1);
 	return `${city}, ${data[1].toUpperCase()}`;
 }
 
 const ForecastView = props => (
-	<div className="ForecastView">
+	<div className="ForecastView center">
 		<div className="city-name">
 			<span>{formatCityName(props.cityName)}</span>
 		</div>
