@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { fetchForecastByCityName } from 'services/openweathermap';
+import { fetchForecastByCityName } from '../../services/openweathermap/openweathermap';
 
 import ForecastView from './components/ForecastView/ForecastView';
 
 class Forecast5 extends Component {
 
-	cityName = 'Skopje'
+	cityName = 'Skopje, mk'
 
 	state = {
 		loading: false,
@@ -14,12 +14,13 @@ class Forecast5 extends Component {
 	}
 
 	componentWillMount() {
-		this.getForecastData();
+		//this.getForecastData();
 	}
 
 	async getForecastData() {
 		this.setState({ loading: true });
 		const result = await fetchForecastByCityName(this.cityName);
+		console.log("getForecastData().result:",result);
 		this.setState({
 			loading: false,
 			forecast: result.list.map(item => ({
