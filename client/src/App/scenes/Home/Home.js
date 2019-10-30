@@ -6,7 +6,8 @@ import Forecast5 from '../Forecast5/Forecast5.js';
 
 const initialState = {
   cityName: '',
-  input: ''
+  input: '',
+  searchHistory: []
 }
 
 class Home extends Component {
@@ -16,16 +17,25 @@ class Home extends Component {
   }
 
   onInputChange = (event) => {
-    console.log("Home.onInputChange:",event.target.value);
     this.setState({input: event.target.value});
   };
 
   onButtonSubmit = () => {
-    console.log("onButtonSubmit");
-    this.setState({cityName: this.state.input});
+    this.setState(state => {
+      const searchHistory = [...state.searchHistory, state.input];
+
+      return {
+        cityName: state.input,
+        searchHistory
+      }
+    });
   }
 
   render() {
+    console.log("Home.searchHistory",this.state.searchHistory);
+    const items = this.state.searchHistory.map(item => {
+      return <li> {item} </li>;
+    })
     return (
     <div className="App">
       {/* <Link to={'./list'}> */}
@@ -35,6 +45,12 @@ class Home extends Component {
         />
       {/* </Link> */}
       <Forecast5 cityName={this.state.cityName}/>
+      <div>
+          <p>Search History:</p>
+         <ol>
+           {items}
+         </ol>
+      </div>
     </div>
     );
   }
