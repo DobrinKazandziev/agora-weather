@@ -1,5 +1,6 @@
 import React from 'react';
 
+import 'owfont/css/owfont-regular.css';
 import './Item.scss';
 
 const Forecast1 = props => (

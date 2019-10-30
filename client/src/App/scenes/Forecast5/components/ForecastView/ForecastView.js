@@ -1,5 +1,5 @@
 import React from 'react';
-import Loading from '../../../../../components/Loading/Loading';
+import Loading from '../../../../components/Loading/Loading';
 import Item from './components/Item/Item';
 import './ForecastView.scss';
 
@@ -11,7 +11,7 @@ const formatCityName = cityName => {
 }
 
 const ForecastView = props => (
-	<div className="ForecastView center">
+	<div className="ForecastView center pa4 br3 shadow-5">
 		<div className="city-name">
 			<span>{formatCityName(props.cityName)}</span>
 		</div>

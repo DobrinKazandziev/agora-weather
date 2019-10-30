@@ -6,6 +6,7 @@
     "cx": "^19.10.6",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "owfont": "git+https://github.com/websygen/owfont.git",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "qs": "^6.9.0",

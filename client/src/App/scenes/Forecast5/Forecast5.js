@@ -19,17 +19,19 @@ class Forecast5 extends Component {
 
 	async getForecastData() {
 		this.setState({ loading: true });
-		const result = await fetchForecastByCityName(this.cityName);
-		console.log("getForecastData().result:",result);
-		this.setState({
-			loading: false,
-			forecast: result.list.map(item => ({
-				date: moment(item.dt * 1000),
-				temp: item.main.temp,
-				humidity: item.main.humidity,
-				weather: item.weather[0],
-			}))
-		});
+		setTimeout(async function () {
+			const result = await fetchForecastByCityName(this.cityName);
+			console.log("getForecastData().result:",result);
+			this.setState({
+				loading: false,
+				forecast: result.list.map(item => ({
+					date: moment(item.dt * 1000),
+					temp: item.main.temp,
+					humidity: item.main.humidity,
+					weather: item.weather[0],
+				}))
+			});
+		}.bind(this), 5000);
 	}
 
 	render() {

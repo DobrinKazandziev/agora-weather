@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
-import Form from '../../../components/Form/Form.js';
+import Form from '../../components/Form/Form.js';
 import Forecast5 from '../Forecast5/Forecast5.js';
 
 
