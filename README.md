@@ -1,4 +1,4 @@
 # agora-weather
 
-/agora-weather -> npm start (express server)  
-/agora-weather/client -> npm start (react)
+/agora-weather -> npm i -> npm start (express server)  
+/agora-weather/client -> npm i -> npm start (react)
