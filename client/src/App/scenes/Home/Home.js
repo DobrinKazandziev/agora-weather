@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router-dom';
 import Form from '../../components/Form/Form.js';
 import Forecast5 from '../Forecast5/Forecast5.js';
 
@@ -32,9 +31,8 @@ class Home extends Component {
   }
 
   render() {
-    console.log("Home.searchHistory",this.state.searchHistory);
-    const items = this.state.searchHistory.map(item => {
-      return <li> {item} </li>;
+    const items = this.state.searchHistory.map((item,index) => {
+      return <li key={index}> {item} </li>;
     })
     return (
     <div className="App">

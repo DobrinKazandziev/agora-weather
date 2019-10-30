@@ -2,7 +2,6 @@ import React from 'react';
 import Loading from '../../../../components/Loading/Loading';
 import Item from './components/Item/Item';
 
-import _ from 'lodash';
 import './ForecastView.scss';
 
 const formatCityName = cityName => {
@@ -32,6 +31,8 @@ const ForecastView = props => (
 				{props.forecast.map((item, index) => (
 					<Item
 						key={index}
+						idx={index}
+						minMaxTemp={props.minMaxTemp}
 						{...item}
 					/>
 				))}

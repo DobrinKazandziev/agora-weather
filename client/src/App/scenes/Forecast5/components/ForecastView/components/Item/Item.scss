@@ -1,5 +1,125 @@
 .Forecast1 {
-	background-color: rgba(255,255,255,0.2);
+	background-color: rgba(187, 188, 240, 0.37);
+	box-sizing: border-box;
+	display: flex;
+	height: 120px;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: 100%;
+
+	div {
+		align-items: center;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
+		padding: 12px;
+		flex-grow: 1;
+
+		span {
+			color: #fff;
+		}
+	}
+
+	.date {
+		text-align: center;
+
+		span {
+			font-size: 16px;
+		}
+	}
+
+	.weather {
+		flex-direction: column;
+		height: 100%;
+		text-align: center;
+		padding-top: 20px;
+
+		.owf {
+			color: #fff;
+			font-size: 72px;
+		}
+
+		span {
+			font-size: 14px;
+		}
+	}
+
+	.temperature {
+		span {
+			font-size: 32px;
+		}
+	}
+
+	.humidity {
+		span {
+			text-align: center;
+			font-size: 14px;
+		}
+	}
+}
+
+.Forecast1Red {
+	background-color: rgba(241, 9, 9, 0.89);
+	box-sizing: border-box;
+	display: flex;
+	height: 120px;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: 100%;
+
+	div {
+		align-items: center;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
+		padding: 12px;
+		flex-grow: 1;
+
+		span {
+			color: #fff;
+		}
+	}
+
+	.date {
+		text-align: center;
+
+		span {
+			font-size: 16px;
+		}
+	}
+
+	.weather {
+		flex-direction: column;
+		height: 100%;
+		text-align: center;
+		padding-top: 20px;
+
+		.owf {
+			color: #fff;
+			font-size: 72px;
+		}
+
+		span {
+			font-size: 14px;
+		}
+	}
+
+	.temperature {
+		span {
+			font-size: 32px;
+		}
+	}
+
+	.humidity {
+		span {
+			text-align: center;
+			font-size: 14px;
+		}
+	}
+}
+
+.Forecast1Blue{
+	background-color: rgb(0, 234, 255);
 	box-sizing: border-box;
 	display: flex;
 	height: 120px;
