@@ -9,6 +9,7 @@ class Forecast5 extends Component {
 	cityName = 'Skopje, mk'
 
 	state = {
+		cityName: '',
 		loading: false,
 		forecast: [],
 	}
@@ -17,10 +18,16 @@ class Forecast5 extends Component {
 		//this.getForecastData();
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.cityName !== prevProps.cityName) {
+			this.getForecastData();
+		}
+	}
+
 	async getForecastData() {
 		this.setState({ loading: true });
 		setTimeout(async function () {
-			const result = await fetchForecastByCityName(this.cityName);
+			const result = await fetchForecastByCityName(this.props.cityName);
 			console.log("getForecastData().result:",result);
 			this.setState({
 				loading: false,
@@ -37,10 +44,11 @@ class Forecast5 extends Component {
 	render() {
 		return (
 			<ForecastView
-				cityName={this.cityName}
+				cityName={this.props.cityName}
 				forecast={this.state.forecast}
 				loading={this.state.loading}
 				onPressRefresh={() => this.getForecastData()}
+				onButtonSubmit={() => this.getForecastData()}
 			/>
 		);
 	}
