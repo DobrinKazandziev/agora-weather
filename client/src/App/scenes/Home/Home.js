@@ -10,39 +10,41 @@ const initialState = {
 }
 
 class Home extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = initialState;
   }
 
   onInputChange = (event) => {
-    this.setState({input: event.target.value});
+    this.setState({
+      input: event.target.value
+    });
   };
 
   onButtonSubmit = () => {
-    this.setState(state => {
-      const searchHistory = [...state.searchHistory, state.input];
+    this.setState(() => {
+      const {searchHistory ,input} = this.state;
+      const newSearchHistory = [...searchHistory, input];
 
       return {
-        cityName: state.input,
-        searchHistory
+        cityName: input,
+        searchHistory: newSearchHistory
       }
     });
   }
 
   render() {
-    const items = this.state.searchHistory.map((item,index) => {
+    const {cityName,searchHistory} = this.state;
+    const items = searchHistory.map((item,index) => {
       return <li key={index}> {item} </li>;
     })
     return (
-    <div className="App">
-      {/* <Link to={'./list'}> */}
-        <Form
-          onInputChange={this.onInputChange}
-          onButtonSubmit={this.onButtonSubmit}
-        />
-      {/* </Link> */}
-      <Forecast5 cityName={this.state.cityName}/>
+    <div>
+      <Form
+        onInputChange={this.onInputChange}
+        onButtonSubmit={this.onButtonSubmit}
+      />
+      <Forecast5 cityName={cityName}/>
       <div>
           <p>Search History:</p>
          <ol>

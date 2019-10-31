@@ -1,14 +1,18 @@
-.ForecastView {
+.forecast-view-wrapper {
 	background-color: #1D56B0;
-	padding: 10px;
-	margin-top: 10px;
-	box-sizing: border-box;
 	height: fit-content;
 	min-height: 40vh;
 	width: 40rem;
+	padding: 2rem;
+	margin-top: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+	border-radius: 0.5rem;
+	box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 );
 
-	.city-name {
-		padding: 60px;
+	.forecast-view-city-name {
+		padding: 2rem;
 		text-align: center;
 
 		span {
@@ -17,17 +21,20 @@
 		}
 	}
 
-	.reload {
+	.forecast-view-reload {
 		margin-bottom: 40px;
 		text-align: center;
 
 		button {
-			background: transparent;
+			background-color: #123a6e;
+			width: 10%;
 			border: 1px solid #fff;
 			color: #fff;
 			cursor: pointer;
 			font-size: 12px;
-			padding: 4px 8px;
+			padding: 0.25rem 0.5rem;
+			border-radius: 0.5rem;
+			box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 );
 
 			&[disabled] {
 				opacity: 0.5;
@@ -35,8 +42,8 @@
 		}
 	}
 
-	.forecast-day {
+	.forecast-view-forecast-day {
 		margin: 0 auto;
-		max-width: 500px;
+		max-width: 95%;
 	}
 }

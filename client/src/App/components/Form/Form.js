@@ -1,5 +1,5 @@
 import React from "react";
-import './form.scss';
+import './Form.scss';
 
 const CLASS_NAMES = {
     FORM_CONTAINER: 'form-container',
