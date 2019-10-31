@@ -1,17 +1,23 @@
 import React from "react";
-import './Form.css';
+import './form.scss';
+
+const CLASS_NAMES = {
+    FORM_CONTAINER: 'form-container',
+    FORM_CONTAINER_INPUT: 'form-container-input',
+    FORM_CONTAINER_BUTTON: 'form-container-button grow link' //grow,link are tachyons
+}
 
 const Form = ({onInputChange, onButtonSubmit}) => {
     return (
         <div>
-            <div className='center'>
-                <div className='form center pa4 br3 shadow-5'>
+            <div>
+                <div className={CLASS_NAMES.FORM_CONTAINER}>
                     <input
-                        className='f4 pa2 w-70 center'
+                        className={CLASS_NAMES.FORM_CONTAINER_INPUT}
                         type='text'
                         onChange={onInputChange}/>
                     <button
-                        className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'
+                        className={CLASS_NAMES.FORM_CONTAINER_BUTTON}
                         onClick={onButtonSubmit}
                     >Submit</button>
                 </div>
@@ -19,6 +25,5 @@ const Form = ({onInputChange, onButtonSubmit}) => {
         </div>
     );
 }
-
 
 export default Form;
