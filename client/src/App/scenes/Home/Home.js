@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Form from '../../components/Form/Form.js';
 import Forecast5 from '../Forecast5/Forecast5.js';
+import SearchHistory from '../SearchHistory/SearchHistory.js';
 
 const initialState = {
   cityName: '',
@@ -34,10 +35,8 @@ class Home extends Component {
   }
 
   render() {
-    const {cityName,searchHistory} = this.state;
-    const items = searchHistory.map((item,index) => {
-      return <li key={index}> {item} </li>;
-    })
+    const {cityName,searchHistory = {}} = this.state;
+
     return (
     <div>
       <Form
@@ -45,12 +44,7 @@ class Home extends Component {
         onButtonSubmit={this.onButtonSubmit}
       />
       <Forecast5 cityName={cityName}/>
-      <div>
-          <p>Search History:</p>
-         <ol>
-           {items}
-         </ol>
-      </div>
+      {searchHistory && <SearchHistory items={searchHistory}/>}
     </div>
     );
   }
