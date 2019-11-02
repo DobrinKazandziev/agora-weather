@@ -2,7 +2,7 @@
 	background-color: #1D56B0;
 	height: fit-content;
 	min-height: 40vh;
-	width: 40rem;
+	width: 80rem;
 	padding: 2rem;
 	margin-top: 1rem;
 	margin-left: auto;
@@ -27,11 +27,11 @@
 
 		button {
 			background-color: #123a6e;
-			width: 10%;
+			width: 5rem;
 			border: 1px solid #fff;
 			color: #fff;
 			cursor: pointer;
-			font-size: 12px;
+			font-size: 1rem;
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.5rem;
 			box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 );
@@ -45,5 +45,17 @@
 	.forecast-view-forecast-day {
 		margin: 0 auto;
 		max-width: 95%;
+
+		.forecast-view-forecast-day-header {
+			display: flex;
+			margin-bottom: 1rem;
+
+			span {
+				justify-content: center;
+				flex-grow: 1;
+				font-size: 32px;
+				color: #fff;
+			}
+		}
 	}
 }

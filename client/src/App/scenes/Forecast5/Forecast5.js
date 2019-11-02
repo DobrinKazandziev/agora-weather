@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 import { fetchForecastByCityName } from '../../services/openweathermap/openweathermap';
 
 import ForecastView from './components/ForecastView/ForecastView';
 
 const initialState = {
 	loading: false,
-	forecast: [],
-	minMaxTemp: {
-		min: {
-			temp: null,
-			idx: null
-		},
-		max: {
-			temp: null,
-			idx: null
-		}
-	}
+	loaded: false,
+	forecast: []
 }
 class Forecast5 extends Component {
 	constructor() {
@@ -30,66 +22,72 @@ class Forecast5 extends Component {
 		}
 	}
 
-	findMinMaxTemp(result) {
-		let maxTemp=-100,minTemp=100;
-		let maxTempIdx=-1,minTempIdx=-1;
-		result.list.forEach((item,index) => {
-			if (item.main.temp > maxTemp) {
-				maxTemp=item.main.temp;
-				maxTempIdx = index;
-			}
-			if (item.main.temp < minTemp) {
-				minTemp=item.main.temp;
-				minTempIdx = index;
-			}
-		});
-		this.setState({
-			minMaxTemp: {
-				min: {
-					temp: minTemp,
-					idx: minTempIdx
-				},
-				max: {
-					temp: maxTemp,
-					idx: maxTempIdx
-				}
-			}
-		});
-	}
-
 	async getForecastData() {
 		const {cityName} = this.props;
-		this.setState({ loading: true });
+		this.setState({
+			loading: true,
+			loaded: false
+		});
 		const result = await fetchForecastByCityName(cityName);
-		const forecast= (result.cod === "404" || result.message ==="city not found") ? {} : this.handleForecast(result);
+		const forecast = (result.cod === "404" || result.message ==="city not found") ? {} : this.handleForecast5(result.list); //TODO: handle no data from api
 		this.setState({
 			loading: false,
+			loaded: true,
 			forecast: forecast
 		});
 	}
 
-	handleForecast(result) {
-		this.findMinMaxTemp(result);
-		const handledForecast = result.list.map((item,index) => {
-			return ({
-				date: moment(item.dt * 1000),
-				temp: item.main.temp,
-				humidity: item.main.humidity,
-				weather: item.weather[0]
-			});
-		});
-		return handledForecast;
+	handleForecast5(list) {
+		return _.values(list.reduce((acc, item) => {
+			const date = item.dt_txt.split(' ')[0];
+			const {dt,weather} = item;
+			const {temp,humidity} = item.main;
+			if (acc[date]) {
+				if (acc[date].max.temp !== temp) {
+					if (acc[date].max.temp < temp) {
+						acc[date].max.temp = temp;
+						acc[date].max.date = moment(dt * 1000);
+						acc[date].max.humidity = humidity;
+						acc[date].max.weather = weather[0];
+					}
+				}
+				if (acc[date].min.temp !== temp) {
+					if (acc[date].min.temp > temp) {
+						acc[date].min.temp = temp;
+						acc[date].min.date = moment(dt* 1000);
+						acc[date].min.humidity = humidity;
+						acc[date].min.weather = weather[0];
+					}
+				}
+			} else {
+				acc[date] = {
+					max: {
+						temp: temp,
+						date: moment(dt * 1000),
+						humidity: humidity,
+						weather: weather[0]
+					},
+					min: {
+						temp: temp,
+						date: moment(dt * 1000),
+						humidity: humidity,
+						weather: weather[0]
+					}
+				};
+			}
+			return acc;
+		}, {}));
 	}
 
 	render() {
 		const {cityName, } = this.props;
-		const {forecast, loading, minMaxTemp} = this.state;
+		const {forecast, loading, loaded} = this.state;
 		return (
 			<ForecastView
 				cityName={cityName}
 				forecast={forecast}
 				loading={loading}
-				minMaxTemp={minMaxTemp}
+				loaded={loaded}
 				onPressRefresh={() => this.getForecastData()}
 				onButtonSubmit={() => this.getForecastData()}
 			/>

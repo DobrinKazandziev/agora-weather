@@ -16,12 +16,13 @@
   }
 
   .form-container-button {
-    display: inline-block;
-    width: 30%;
-    color: #fff;
     background-color: #123a6e;
+    width: 30%;
+    border: 1px solid #fff;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
     font-size: 1.25rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
-    cursor: pointer;
   }
 }

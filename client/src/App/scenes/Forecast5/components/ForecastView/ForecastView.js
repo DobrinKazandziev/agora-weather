@@ -8,7 +8,8 @@ const CLASS_NAMES = {
 	FORECAST_VIEW_WRAPPER: 'forecast-view-wrapper',
 	FORECAST_VIEW_CITY_NAME: 'forecast-view-city-name',
 	FORECAST_VIEW_RELOAD: 'forecast-view-reload grow link', //grow,link are tacyons
-	FORECAST_VIEW_FORECAST_DAY: 'forecast-view-forecast-day'
+	FORECAST_VIEW_FORECAST_DAY: 'forecast-view-forecast-day',
+	FORECAST_VIEW_FORECAST_DAY_HEADER: 'forecast-view-forecast-day-header'
 }
 
 const formatCityName = cityName => {
@@ -22,7 +23,7 @@ const formatCityName = cityName => {
 
 class ForecastView extends Component {
 	render() {
-		const {cityName, onPressRefresh, loading, forecast, minMaxTemp} = this.props;
+		const {cityName, onPressRefresh, loading, loaded, forecast} = this.props;
 
 		const formatedCityName = (
 			<div className={CLASS_NAMES.FORECAST_VIEW_CITY_NAME}>
@@ -40,18 +41,23 @@ class ForecastView extends Component {
 				</button>
 			</div>
 		)
-		const listItems = (
-			<div className={CLASS_NAMES.FORECAST_VIEW_FORECAST_DAY}>
-				{forecast.map((item, index) => (
-					<Item
-						key={index}
-						idx={index}
-						minMaxTemp={minMaxTemp}
-						{...item}
-					/>
-				))}
-			</div>
-		)
+		const ListItems = () => {
+				return (
+					<div className={CLASS_NAMES.FORECAST_VIEW_FORECAST_DAY}>
+						<div className={CLASS_NAMES.FORECAST_VIEW_FORECAST_DAY_HEADER}>
+							<span>Hottest</span>
+							<span>Coldest</span>
+						</div>
+						{forecast.map((item, index) => (
+							<Item
+								key={index}
+								idx={index}
+								{...item}
+							/>
+						))}
+					</div>
+				)
+		}
 
 		return (
 			<div className={CLASS_NAMES.FORECAST_VIEW_WRAPPER}>
@@ -59,7 +65,7 @@ class ForecastView extends Component {
 				{refreshButton}
 				{loading ? (
 					<Loading />
-				) : listItems}
+				) : loaded && <ListItems />}
 			</div>
 		)
 	}
