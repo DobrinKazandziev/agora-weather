@@ -59,13 +59,13 @@ class ForecastView extends Component {
 				)
 		}
 
-		return (
+		return loaded && (
 			<div className={CLASS_NAMES.FORECAST_VIEW_WRAPPER}>
 				{formatedCityName}
 				{refreshButton}
 				{loading ? (
 					<Loading />
-				) : loaded && <ListItems />}
+				) : <ListItems />}
 			</div>
 		)
 	}

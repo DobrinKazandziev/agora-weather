@@ -23,15 +23,16 @@ class Home extends Component {
   };
 
   onButtonSubmit = () => {
-    this.setState(() => {
-      const {searchHistory ,input} = this.state;
-      const newSearchHistory = [...searchHistory, input];
-
-      return {
-        cityName: input,
-        searchHistory: newSearchHistory
-      }
-    });
+    const {searchHistory ,input} = this.state;
+    const newSearchHistory = [...searchHistory, input];
+    if (input !== '') {
+      this.setState(() => {
+        return {
+          cityName: input,
+          searchHistory: newSearchHistory
+        }
+      });
+    }
   }
 
   render() {
