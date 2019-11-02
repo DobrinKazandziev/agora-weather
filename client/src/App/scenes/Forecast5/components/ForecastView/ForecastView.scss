@@ -3,7 +3,7 @@
 	height: fit-content;
 	min-height: 40vh;
 	width: 80rem;
-	padding: 2rem;
+	padding: 0.5rem;
 	margin-top: 1rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -22,7 +22,6 @@
 	}
 
 	.forecast-view-reload {
-		margin-bottom: 40px;
 		text-align: center;
 
 		button {
@@ -48,7 +47,7 @@
 
 		.forecast-view-forecast-day-header {
 			display: flex;
-			margin-bottom: 1rem;
+			margin-bottom: 0.25rem;
 
 			span {
 				justify-content: center;
