@@ -7,7 +7,7 @@ const CLASS_NAMES = {
     FORM_CONTAINER_BUTTON: 'form-container-button grow link' //grow,link are tachyons
 }
 
-const Form = ({onInputChange, onButtonSubmit}) => {
+const Form = ({handleInputChange, handleButtonPress, handleKeyPress}) => {
     return (
         <div>
             <div>
@@ -15,10 +15,11 @@ const Form = ({onInputChange, onButtonSubmit}) => {
                     <input
                         className={CLASS_NAMES.FORM_CONTAINER_INPUT}
                         type='text'
-                        onChange={onInputChange}/>
+                        onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}/>
                     <button
                         className={CLASS_NAMES.FORM_CONTAINER_BUTTON}
-                        onClick={onButtonSubmit}
+                        onClick={handleButtonPress}
                     >Submit</button>
                 </div>
             </div>
